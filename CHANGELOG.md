@@ -4,6 +4,11 @@ This file describes the changes / additions / fixes between wrapper releases, tr
 
 ## [Unreleased]
 
+### Added
+
+* `ScopeId`
+* `FieldValueRequest`
+
 ## [0.13.0] (released 2026-08-31)
 
 ### Changed
