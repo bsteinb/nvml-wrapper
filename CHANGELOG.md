@@ -4,6 +4,13 @@ This file describes the changes / additions / fixes between wrapper releases, tr
 
 ## [Unreleased]
 
+### Changed
+
+* `Device`
+  * Methods
+    * `field_values_for()`
+* `FieldValueSample`
+
 ### Added
 
 * `ScopeId`
