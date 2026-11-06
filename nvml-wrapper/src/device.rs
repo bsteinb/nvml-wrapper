@@ -35,10 +35,10 @@ use std::convert::TryInto;
 #[cfg(target_os = "linux")]
 use std::os::raw::c_ulong;
 use std::{
+    borrow::Borrow,
     convert::TryFrom,
     ffi::CStr,
     mem,
-    ops::Deref,
     os::raw::{c_int, c_uint, c_ulonglong},
     ptr,
 };
@@ -3685,17 +3685,20 @@ impl<'nvml> Device<'nvml> {
     ) -> Result<Vec<Result<FieldValueSample, NvmlError>>, NvmlError>
     where
         I: IntoIterator,
-        I::Item: Deref<Target = FieldValueRequest>,
+        I::Item: Borrow<FieldValueRequest>,
     {
         let sym = nvml_sym(self.nvml.lib.nvmlDeviceGetFieldValues.as_ref())?;
 
         unsafe {
             let mut field_values: Vec<nvmlFieldValue_t> = reqs
                 .into_iter()
-                .map(|req| nvmlFieldValue_t {
-                    fieldId: crate::translate_field_id(self.nvml.field_id_scheme, req.id.0),
-                    scopeId: req.scope_id.clone().unwrap_or(ScopeId(0)).0,
-                    ..mem::zeroed()
+                .map(|req| {
+                    let req = req.borrow();
+                    nvmlFieldValue_t {
+                        fieldId: crate::translate_field_id(self.nvml.field_id_scheme, req.id.0),
+                        scopeId: req.scope_id.clone().unwrap_or(ScopeId(0)).0,
+                        ..mem::zeroed()
+                    }
                 })
                 .collect();
 
