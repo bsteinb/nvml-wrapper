@@ -174,7 +174,7 @@ pub struct RetiredPage {
 /// Populate this newtype with the constants `nvml_wrapper::sys_exports::field_id::*`.
 ///
 /// Used in `FieldValue` and `Device.field_values_for()`.
-#[derive(Debug, Clone, Eq, PartialEq, Hash)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct FieldId(pub u32);
 
@@ -186,7 +186,7 @@ pub struct FieldId(pub u32);
 /// Default value is 0 which is appropriate
 ///
 /// Used in `FieldValue` and `Device.field_values_for()`.
-#[derive(Debug, Default, Clone, Eq, PartialEq, Hash)]
+#[derive(Debug, Default, Clone, Copy, Eq, PartialEq, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct ScopeId(pub u32);
 
