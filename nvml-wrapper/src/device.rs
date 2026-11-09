@@ -3696,7 +3696,7 @@ impl<'nvml> Device<'nvml> {
                     let req = req.borrow();
                     nvmlFieldValue_t {
                         fieldId: crate::translate_field_id(self.nvml.field_id_scheme, req.id.0),
-                        scopeId: req.scope_id.clone().unwrap_or(ScopeId(0)).0,
+                        scopeId: req.scope_id.0,
                         ..mem::zeroed()
                     }
                 })

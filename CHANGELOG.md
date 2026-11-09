@@ -6,7 +6,7 @@ This file describes the changes / additions / fixes between wrapper releases, tr
 
 ### Changed
 
-* **Breaking**: `Device::field_values_for()` takes an iterator of `FieldValueRequest` (a field ID plus an optional scope ID) instead of `&[FieldId]`; wrap existing IDs with `FieldValueRequest::id()` (#55)
+* **Breaking**: `Device::field_values_for()` takes an iterator of `FieldValueRequest` (a field ID plus a scope ID) instead of `&[FieldId]`; wrap existing IDs with `FieldValueRequest::id()` (#55)
 * **Breaking**: `FieldValueSample` has a new public field, `scope: ScopeId` (#55)
 
 ### Added
